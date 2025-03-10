@@ -10,10 +10,12 @@ const Login = ({ setIsLoggedIn }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5174/Login", { email, password });
-      localStorage.setItem("username", res.data.username);
+      const res = await axios.post("http://localhost:3000/login", { email, password });
+      const userData = { id: res.data.userId, name: res.data.username, email: email };
+      localStorage.setItem("user", JSON.stringify(userData));
       setIsLoggedIn(true);
-      navigate("/home");
+      window.dispatchEvent(new Event("storage"));
+      navigate("/chains");
     } catch (error) {
       alert(error.response?.data?.message || "Invalid Credentials");
     }

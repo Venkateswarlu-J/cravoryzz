@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Chains.css";
 
+
+
+
 const LandingPage = () => {
   return (
     <div className="landing-container">
